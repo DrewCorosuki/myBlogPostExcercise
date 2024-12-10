@@ -11,7 +11,6 @@ namespace blog.core.Entities
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        public string UserName { get; set; } = string.Empty;
         public string FullName
         {
             get
@@ -19,8 +18,10 @@ namespace blog.core.Entities
                 return FirstName + " " + LastName;
             }
         }
+        public string UserName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public int RoleId { get; set; }
         public string RoleName { get; set; } = string.Empty;
+        public bool IsDeleted { get; set; }
     }
 }

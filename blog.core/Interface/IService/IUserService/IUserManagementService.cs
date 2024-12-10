@@ -1,4 +1,5 @@
-﻿using System;
+﻿using blog.core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace blog.core.Interface.IService.IUserService
 {
     public interface IUserManagementService
     {
+        Task<UserCreateViewModel> CreateUser(UserCreateViewModel model);
+        Task<UserDeleteViewModel> DeleteUser(UserDeleteViewModel model);
     }
 }
