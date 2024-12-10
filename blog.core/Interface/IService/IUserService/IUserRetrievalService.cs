@@ -11,5 +11,6 @@ namespace blog.core.Interface.IService.IUserService
     {
         Task<UserListViewModel> GetAllUsers();
         Task<CurrentLoggedinUserViewModel> GetCurrentLoggedInUser(int id);
+        Task<LogInViewModel> LogIn(LogInViewModel model);
     }
 }
