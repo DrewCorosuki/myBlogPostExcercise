@@ -41,28 +41,6 @@ namespace blog.core.Service.UserService
             return model;
         }
 
-        public async Task<LogInViewModel> LogIn(LogInViewModel model)
-        {
-            try
-            {
-                var user = await _userRepository.Get(i => i.UserName == model.UserName && i.Password == model.Password);
-                if (user != null)
-                {
-                    model.Success = true;
-                }
-                else
-                {
-                    model.Message = "Invalid username or password.";
-                }
-                model.Success = true;
-            }
-            catch (Exception e)
-            {
-                model.StatusCode = 500;
-                model.Message = e.Message;
-            }
-            return model;
-        }
 
         public async Task<CurrentLoggedinUserViewModel> GetCurrentLoggedInUser(int id)
         {

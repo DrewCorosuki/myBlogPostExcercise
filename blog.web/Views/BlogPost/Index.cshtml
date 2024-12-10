@@ -1,0 +1,68 @@
+﻿@model blog.core.ViewModels.BlogPostListViewModel
+@using blog.core.Enums;
+@{
+ 
+    ViewData["Title"] = "Blog Posts";
+    ViewBag.ActivePage = "Blog Post";
+    var roleId = Context.Session.GetInt32("RoleId");
+}
+
+    <style>
+    .alert{
+        border-radius:3px;
+    }
+    </style>
+    <div class="row mb-2">
+        <div class="col-12 d-flex justify-content-end">
+            <a href="/BlogPost/Create" class="btn btn-sm btn-outline-primary">Create New</a>
+        </div>
+    </div>
+@foreach (var blog in Model.Data)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4">
+                    <img src="~/content/dist/img/banners/@blog.BannerImage" style="width:100%; height:150px" />
+                </div>
+                <div class="col-8">
+                    <div class="font-weight-bold h2 mb-0">@blog.Title</div>
+
+                    <span class="alert alert-@(blog.Status == BlogPostEnum.BlogPostStatus.Draft ? "secondary" : 
+                                               (blog.Status == BlogPostEnum.BlogPostStatus.Published ? "success" : "danger")) pt-0 pb-0 pr-5 pl-5 small">@blog.Status</span>
+                    <div class="small mb-2">
+                        @Html.Raw(blog.Content)
+                    </div>
+                    <div class="small text-muted font-weight-bold">@blog.PostedByName</div>
+                    <div class="text-muted font-weight-bold" style="font-size:10px">@blog.DatePosted.ToString("MMM dd, yyyy")</div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+           
+            <a href="/BlogPost/Edit/@blog.Id" class="btn btn-sm btn-success mr-2">Edit</a>
+            @if (roleId == 1 && blog.Status == BlogPostEnum.BlogPostStatus.Draft)
+            {
+                <button class="btn btn-sm btn-primary mr-2" onclick="changeBlogPostStatus(@blog.Id,1)">Approve</button>
+                <button class="btn btn-sm btn-danger" onclick="changeBlogPostStatus(@blog.Id,-1)">Reject</button>
+            }
+        </div>
+    </div>
+}
+
+<script>
+    changeBlogPostStatus = function(id,status){
+        $.ajax({
+            url: "/BlogPost/ChangeBlogPostStatus",
+            data: {id:id ,status : status},
+            success: function(res){
+                if (res.success) {
+                    location.reload();
+                } else
+                    alert(res.message);
+            }
+        });
+
+    }
+</script>
+

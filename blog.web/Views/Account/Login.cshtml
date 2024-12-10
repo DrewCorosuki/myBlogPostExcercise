@@ -1,0 +1,311 @@
+﻿@{
+    Layout = "/Views/Shared/_LayoutPub.cshtml";
+    ViewData["Title"] = "Login";
+}
+<style>
+    label {
+        font-weight: normal
+    }
+</style>
+<div class="row">
+    <div class="col-6 bg-primary d-none d-md-block d-lg-block" style="height:100vh;">
+        <div style="display: block;
+  margin-left: 1.5em;
+  margin-right: auto;
+  width: 50%;margin-top:35vh;font-size:4em;">
+            <b>bloggers<span style="color:#ff3131">PRO</span></b>
+            <div style="font-size:11px !important;    letter-spacing: 3.6px;
+    text-align: center;
+    margin-left: 3.5em;
+    width: 100%;">
+                My Blog Posting Excercise
+            </div>
+        </div>
+        @*  <img src="/content//dist/img/animalCareProLogo-side.PNG" class="mb-3 " style="display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;margin-top:35vh" /> *@
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-12" style="background: #fff;">
+        <div class="container mt-5 ">
+            <b>bloggers<span style="color:#ff3131">PRO</span></b>
+            @* <img src="/content//dist/img/animalCareProLogo.PNG" style="height:6em;width:200px" class="mb-3" /> *@
+            <div class="content">
+                <div class="row mt-5">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <h3>Login to your account</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger p-2 @(ViewBag.ErrorMessage != null && @ViewBag.ErrorMessage != "" ? "": "d-none" )">
+                                    <svg width="17" height="17" style="margin-top:-3px" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                        <path d="M12 9v4"></path>
+                                        <path d="M12 17h.01"></path>
+                                    </svg>
+                                    <span class="mt-2 small">@ViewBag.ErrorMessage</span>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="loginForm" method="post" action="/Account/Login/">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="text"
+                                       class="form-control"
+                                       name="UserName"
+                                       id="UserName"
+                                       placeholder="Password"
+                                       required>
+                                <label for="UserName" class="small">Username</label>
+                            </div>
+
+                            <div class="form-floating mt-3 mb-3">
+                                <input type="password" class="form-control" name="Password" id="Password" value="" placeholder="Password" required>
+                                <label for="pwd" class="small">Password</label>
+                            </div>
+                            <div class="form-floating d-none mb-4" id="branchCOntainer">
+                                <select class="form-control" id="BrhCode" name="BrhCode">
+                                    <option>Select Branch</option>
+                                </select>
+                                <label for="floatingSelect" class="small">Branch</label>
+                            </div>
+                            <div class="">
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-lg" type="submit">Log in now</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="small">Don't have an account? <a href="/Account/Register/" style="text-decoration:none"> Sign Up here</a></div>
+                                </div>
+                            </div>
+                            @*  <div class="row gy-3 overflow-hidden">
+                            <div class="col-12">
+                            <div class="fmb-3">
+                            <label for="email" class="form-label ">Email<i>*</i></label>
+                            <input type="email"
+                            class="form-control"
+                            name="UserEmailId"
+                            id="UserEmailId"
+                            placeholder="youremail@domain.com"
+                            onblur="getAssignedBranches('UserEmailId')"
+                            required>
+                            </div>
+                            </div>
+                            <div class="col-12">
+                            <div class="">
+                            <label for="password" class="form-label ">Password <i>*</i></label>
+                            <input type="password" class="form-control" name="LoginPassword" id="LoginPassword" value="" placeholder="Password" required>
+
+                            </div>
+                            </div>
+
+                            <div class="col-12 d-none" id="branchCOntainer">
+                            <div class="">
+                            <label for="password" class="form-label">Branch<span>*</span></label>
+                            <select class="form-control" id="BrhCode" name="BrhCode">
+                            <option>Select Branch</option>
+                            </select>
+
+                            </div>
+                            </div>
+                            <div class="col-12">
+                            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
+                            <label class="form-check-label text-secondary" for="remember_me">
+                            Keep me logged in
+                            </label>
+                            </div>
+                            </div>
+                            <div class="col-12">
+                            <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Log in now</button>
+                            </div>
+                            </div>
+                            </div>*@
+                        </form>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<div class="container bg-primary">
+    <div class="float-right mt-5" style="font-size:11px;">
+        <div >Language</div>
+        <select style="border:none;outline:none">
+            <option>عربي</option>
+            <option>English</option>
+        </select>
+    </div>
+    <div style="clear:both;"></div>
+</div>*@
+@*<section class="bg-primary py-3 py-md-5 py-xl-8">
+    <form id="loginForm" method="post" action="/Account/Login/" style="margin-bottom:3em">
+        <div class="container">
+        <div class="row gy-4">
+                <div class="col-12 col-md-6 col-xl-5 small">
+
+                    <div class="card border-0 rounded-4">
+                        <div class="card-body p-3 p-md-4 p-xl-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-4">
+                                        <h3>Login to your account</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form action="#!">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                                    <label for="email">Email</label>
+                                </div>
+
+                                <div class="form-floating mt-3 mb-3">
+                                    <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                                    <label for="pwd">Password</label>
+                                </div>
+                                <div class="row gy-3 overflow-hidden">
+                                    <div class="col-12">
+                                        <div class="fmb-3">
+                                            <label for="email" class="form-label ">Email<i>*</i></label>
+                                            <input type="email"
+                                                   class="form-control"
+                                                   name="UserEmailId"
+                                                   id="UserEmailId"
+                                                   placeholder="youremail@domain.com"
+                                                   onblur="getAssignedBranches('UserEmailId')"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="">
+                                            <label for="password" class="form-label ">Password <i>*</i></label>
+                                            <input type="password" class="form-control" name="LoginPassword" id="LoginPassword" value="" placeholder="Password" required>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-none" id="branchCOntainer">
+                                        <div class="">
+                                            <label for="password" class="form-label">Branch<span>*</span></label>
+                                            <select class="form-control" id="BrhCode" name="BrhCode">
+                                                <option>Select Branch</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
+                                            <label class="form-check-label text-secondary" for="remember_me">
+                                                Keep me logged in
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary btn-lg" type="submit">Log in now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end mt-4">
+                                        <a href="#!">Forgot password</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-12 col-md-6 col-xl-7">
+                <div class="d-flex text-bg-primary" style="margin-right:auto;margin-left:auto;margin:0">
+                    <div class="col-12 col-xl-9">
+                        <img class="img-fluid rounded mb-4" loading="lazy" src="/content/dist/img/logo.png" width="245" height="80" alt="BootstrapBrain Logo" style="width:100%">
+                        <hr class="border-primary-subtle mb-4">
+                        <div class="text-left">
+                                <h2 class="h1 mb-4">Welcome</h2>
+                                <p class="lead mb-5">Register your account here.</p>
+                                <a href="/Account/Register/" class="btn btn-success bnt-sm">REGISTER HERE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </form>
+</section>*@
+@section scripts {
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                var email = $('#UserEmailId').val();
+                //alert(email);
+                console.log('Email: ' + email);
+                if (email != "") {
+                    getAssignedBranches('UserEmailId');
+                }
+            },500);
+        });
+        //$(document).on('click', function (e) {
+        //    var email = $('#UserEmailId').val();
+        //    //alert(email);
+        //    console.log('Email: ' + email);
+        //    if (email != "") {
+        //        getAssignedBranches('UserEmailId');
+        //    }
+        //});
+        let clearBranchList = function(){
+            console.log('...');
+            $('#BrhCode').html('');
+        }
+        let getAssignedBranches = function (n) {
+            var email = $('#' + n).val();
+            console.log(email);
+            $.ajax({
+                url: '/Account/GetBranchesByEmailAddress/',
+                data: { emailAddress: email },
+                success: function(res)
+                {
+                    console.log(res);
+                    $('#BrhCode').html('');
+                    if(res.success)
+                    {
+                        if (!res.isSuperAdmin && !res.isAdmin) {
+                            console.log('....');
+                            console.log(res);
+                            $('#branchCOntainer').removeClass('d-none');
+                            $('#BrhCode').append('<option value="">-Select Branch-</option>');
+                            $('#BrhCode').attr('required','required');
+                            for (let i = 0; i < res.data.length; i++) {
+                                console.log(res.data[i]);
+                                $('#BrhCode').append('<option value="' + res.data[i].brhCode + '">' + res.data[i].brhName + '</option>');
+                            }
+                        }
+                        else
+                        {
+                            $('#branchCOntainer').addClass('d-none');
+                            $('#BrhCode').removeAttr('required', 'required');
+                        }
+                    }else{
+                        $('#branchCOntainer').addClass('d-none');
+                    }
+                }
+            });
+        }
+    </script>
+}

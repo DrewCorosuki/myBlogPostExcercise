@@ -15,6 +15,11 @@ namespace blog.web.Controllers
 
         public IActionResult Index()
         {
+            var IsLoggedIn = HttpContext.Session.GetInt32("loggedInUserId");
+            if (IsLoggedIn == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 

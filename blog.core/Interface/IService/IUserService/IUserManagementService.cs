@@ -11,5 +11,6 @@ namespace blog.core.Interface.IService.IUserService
     {
         Task<UserCreateViewModel> CreateUser(UserCreateViewModel model);
         Task<UserDeleteViewModel> DeleteUser(UserDeleteViewModel model);
+        Task<LogInViewModel> LogIn(LogInViewModel model);
     }
 }

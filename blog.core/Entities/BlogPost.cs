@@ -19,10 +19,10 @@ namespace blog.core.Entities
         public DateTime DatePosted { get; set; }
         public int UpdatedByUserId { get; set; }
         public string UpdatedByName { get; set; } = string.Empty;
-        public DateTime DateUpdated { get; set; }
+        public DateTime? DateUpdated { get; set; }
         public bool IsDeleted { get; set; }
         public int DeletedByUserId { get; set; }
         public string DeletedByName { get; set; } = string.Empty;
-        public DateTime DateDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
     }
 }

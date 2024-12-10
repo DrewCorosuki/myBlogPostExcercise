@@ -3,6 +3,7 @@ using blog.core.Entities;
 using blog.core.Interface.IRepository;
 using blog.core.Interface.IService.IUserService;
 using blog.core.ViewModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,15 @@ namespace blog.core.Service.UserService
     public class UserManagementService : IUserManagementService
     {
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _userRepository;
         public UserManagementService(
             IMapper mapper,
+            IHttpContextAccessor httpContextAccessor,
             IUserRepository userRepository)
         {
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
             _userRepository = userRepository;
         }
         public async Task<UserCreateViewModel> CreateUser(UserCreateViewModel model)
@@ -46,6 +50,33 @@ namespace blog.core.Service.UserService
                 var user = await _userRepository.FindById(model.Id);
                 user.IsDeleted = true;
                 await _userRepository.SoftDelete(user);
+                model.Success = true;
+            }
+            catch (Exception e)
+            {
+                model.StatusCode = 500;
+                model.Message = e.Message;
+            }
+            return model;
+        }
+
+        public async Task<LogInViewModel> LogIn(LogInViewModel model)
+        {
+            try
+            {
+                var user = await _userRepository.Get(i => i.UserName == model.UserName && i.Password == model.Password);
+                if (user != null)
+                {
+                    var u = user.FirstOrDefault();
+                    _httpContextAccessor.HttpContext.Session.SetInt32("loggedInUserId", u.Id);
+                    _httpContextAccessor.HttpContext.Session.SetString("loggedInUserFullName", u.FullName);
+                    _httpContextAccessor.HttpContext.Session.SetInt32("RoleId", u.RoleId);
+                    model.Success = true;
+                }
+                else
+                {
+                    model.Message = "Invalid username or password.";
+                }
                 model.Success = true;
             }
             catch (Exception e)

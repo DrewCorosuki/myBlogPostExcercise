@@ -9,7 +9,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-danger">
     <!-- Brand Logo -->
     <a href="#" class="brand-link" style="text-decoration:none">
-        <b>Blog<span style="color:#ff3131">PRO</span></b>
+        <b>Bloggers<span style="color:#ff3131">PRO</span></b>
        @*  <img src="~/Content/dist/img/logo.png" alt="Logo" class="brand-image text-center" style="width: 70%"> *@
         <span style="color:transparent">x</span>
        @* <span class="brand-text font-weight-bold" style="font-size: 0.7em; vertical-align: top;">Document Tracking System</span>*@
@@ -29,13 +29,13 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column text-sm" data-widget="treeview" role="menu" data-accordion="false"> 
                 <li class="nav-item" style="cursor:pointer">
-                    <a class="nav-link">
+                    <a href="/BlogPost" class="nav-link @(ViewBag.ActivePage == "Blog Post" ? "active": "")">
                         <i class="nav-icon pl-1">
                             <svg width="17" height="17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>
                         </i>
-                        <p>Blogs </p>
+                        <p>Blog Post</p>
                        @*  @if (@access.SubMenu.Count() > 0)
                         {
                             <p>

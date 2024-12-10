@@ -1,0 +1,52 @@
+﻿@model blog.core.ViewModels.BlogPostDetailsViewModel
+
+@{
+    ViewData["Title"] = "Edit Blog Posts";
+    ViewBag.ActivePage = "Blog Post";
+}
+
+
+<div class="container">
+    <form action="/BlogPost/Edit/" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="Id" id="Id" value="@Model.Id"/>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div>Title</div>
+                        <input type="text" class="form-control" name="Title" id="Title" value="@Model.Title"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div>Banner</div>
+                        <input type="file" class="form-control" name="BannerFile" id="BannerFile" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div>Content</div>
+                        <textarea class="form-control" id="content" name="content"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 d-flex justify-content-end">
+                        <a href="/BlogPost" class="btn btn-sm btn-secondary mr-2">Cancel</a>
+                        <button class="btn btn-sm btn-primary ">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/content/plugins/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function () {
+            CKEDITOR.replace('content');
+            CKEDITOR.instances['content'].setData(`@Html.Raw(Model.Content)`);
+        })
+    </script>
+         
+}

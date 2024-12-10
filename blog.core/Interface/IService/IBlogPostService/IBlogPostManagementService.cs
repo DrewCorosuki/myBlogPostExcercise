@@ -9,7 +9,8 @@ namespace blog.core.Interface.IService.IBlogPostService
 {
     public interface IBlogPostManagementService
     {
-        Task<CreateBlogPostViewModel> CreateBlogPost(CreateBlogPostViewModel model);
-        Task<EditBlogPostViewModel> EditBlogPost(EditBlogPostViewModel model);
+        Task<BlogPostCreateViewModel> CreateBlogPost(BlogPostCreateViewModel model);
+        Task<BlogPostEditViewModel> EditBlogPost(BlogPostEditViewModel model);
+        Task<BlogPostChangeStatusViewModel> ChangeBlogPostStatus(BlogPostChangeStatusViewModel model);
     }
 }

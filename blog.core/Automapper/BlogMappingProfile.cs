@@ -22,7 +22,11 @@ namespace blog.core.Automapper
             #endregion
 
             #region Blog Post
-
+            CreateMap<BlogPost, BlogPostViewModel>();
+            CreateMap<BlogPostCreateViewModel, BlogPost>();
+            CreateMap<BlogPostEditViewModel, BlogPost>();
+            CreateMap<BlogPostChangeStatusViewModel, BlogPost>();
+            CreateMap<BlogPost, BlogPostDetailsViewModel>();
             #endregion
         }
     }
