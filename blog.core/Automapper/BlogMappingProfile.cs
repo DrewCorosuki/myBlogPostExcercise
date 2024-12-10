@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using blog.core.Entities;
+using blog.core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,7 @@ namespace blog.core.Automapper
             #endregion
 
             #region Users
-
+            CreateMap<UserCreateViewModel, User>();
             #endregion
 
             #region Blog Post

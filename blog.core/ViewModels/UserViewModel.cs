@@ -37,6 +37,13 @@ namespace blog.core.ViewModels
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
         public int RoleId { get; set; }
         public string RoleName { get; set; } = string.Empty;
     }
