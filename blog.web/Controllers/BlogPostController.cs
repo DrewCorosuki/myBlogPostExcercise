@@ -65,7 +65,7 @@ namespace blog.web.Controllers
                 if (!Array.Exists(validExtensions, ext => ext == fileExt))
                 {
                     ViewBag.ErrorMessage = "Invalid banner file.";
-                    return View();
+                    return View(await _blogPostRetrievalService.FindBlogPostById(model.Id));
                 }
                 else
                 {

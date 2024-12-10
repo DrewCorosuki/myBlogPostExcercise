@@ -7,13 +7,20 @@ namespace blog.web.Controllers
     public class AccountController : Controller
     {
         private readonly IUserManagementService _userManagementService;
-        public AccountController(IUserManagementService userManagementService)
+        private readonly IUserRetrievalService _userRetrievalService;
+        public AccountController(IUserManagementService userManagementService, IUserRetrievalService userRetrievalService)
         {
             _userManagementService = userManagementService;
+            _userRetrievalService = userRetrievalService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var roleId = HttpContext.Session.GetInt32("RoleId");
+            if(roleId != 1)
+            {
+                return RedirectToAction("", "BlogPost");
+            }
+            return View(await _userRetrievalService.GetAllUsers());
         }
 
         public IActionResult LogIn()
@@ -38,6 +45,35 @@ namespace blog.web.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login", "Account");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(UserCreateViewModel model)
+        {
+            var roleId = HttpContext.Session.GetInt32("RoleId");
+            if (roleId != 1)
+            {
+                return RedirectToAction("", "BlogPost");
+            }
+            var user = await _userManagementService.CreateUser(model);
+            if (!model.Success)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("","Account");
+            }
+        }
+
+        public async Task<IActionResult> DeleteUser(UserDeleteViewModel model)
+        {
+            return Json(await _userManagementService.DeleteUser(model));
         }
     }
 }

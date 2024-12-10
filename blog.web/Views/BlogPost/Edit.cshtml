@@ -7,6 +7,14 @@
 
 
 <div class="container">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            </div>
+        </div>
+    }
     <form action="/BlogPost/Edit/" method="post" enctype="multipart/form-data">
         <input type="hidden" name="Id" id="Id" value="@Model.Id"/>
         <div class="row">

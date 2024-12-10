@@ -19,6 +19,7 @@ namespace blog.core.Automapper
 
             #region Users
             CreateMap<UserCreateViewModel, User>();
+            CreateMap<User, UserViewModel>();
             #endregion
 
             #region Blog Post

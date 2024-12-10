@@ -27,7 +27,7 @@ namespace blog.core.Service.UserService
             var model = new UserListViewModel();
             try
             {
-                var users = await _userRepository.GetAll();
+                var users = await _userRepository.Get(i => !i.IsDeleted);
                 model.Data = users
                     .Select(n => _mapper.Map<User, UserViewModel>(n))
                     .ToList();

@@ -1,0 +1,47 @@
+﻿@{
+
+    ViewData["Title"] = "Create User";
+    ViewBag.ActivePage = "Users";
+    var roleId = Context.Session.GetInt32("RoleId");
+}
+<div class="container">
+    <form action="/Account/Create" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div>Role</div>
+                <select class="form-control" name="RoleId" required>
+                <option value="1">Admin</option>
+                <option value="2">Editor</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div>First Name</div>
+                <input type="text" class="form-control" name="FirstName" required />
+        </div>
+        <div class="col-md-3">
+            <div>Last Name</div>
+                <input type="text" class="form-control" name="LastName" required />
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-md-6">
+            <div>Username</div>
+                <input type="text" class="form-control" name="UserName" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div>Password</div>
+            <input type="password" class="form-control" name="Password" required/>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6 d-flex justify-content-end">
+            <a href="/Account/" class="btn btn-sm btn-secondary mr-2">Cancel</a>
+            <button class="btn btn-sm btn-primary" type="submit">Create</button>
+        </div>
+    </div>
+    </form>
+</div>
