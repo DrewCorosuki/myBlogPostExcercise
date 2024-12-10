@@ -14,7 +14,7 @@ namespace blog.core.Automapper
         public BlogMappingProfile()
         {
             #region Roles
-
+            CreateMap<Role, RoleViewModel>();
             #endregion
 
             #region Users

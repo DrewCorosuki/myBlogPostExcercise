@@ -8,5 +8,6 @@ namespace blog.core.Interface.IService.IBlogPostService
 {
     public interface IBlogPostRetrievalService
     {
+
     }
 }

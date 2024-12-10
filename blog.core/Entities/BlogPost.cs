@@ -17,6 +17,9 @@ namespace blog.core.Entities
         public int PostedByUserId { get; set; }
         public string PostedByName { get; set; } = string.Empty;
         public DateTime DatePosted { get; set; }
+        public int UpdatedByUserId { get; set; }
+        public string UpdatedByName { get; set; } = string.Empty;
+        public DateTime DateUpdated { get; set; }
         public bool IsDeleted { get; set; }
         public int DeletedByUserId { get; set; }
         public string DeletedByName { get; set; } = string.Empty;
