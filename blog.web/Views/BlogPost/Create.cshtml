@@ -4,6 +4,14 @@
 }
 
 <div class="container">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            </div>
+        </div>
+    }
     <form action="/BlogPost/Create/" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6">
@@ -15,7 +23,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div>Banner</div>
+                        <div>Banner <span style="font-size:10px">  5MB max (JPG, PNG, GIF)</span></div>
                         <input type="file" class="form-control" name="BannerFile" id="BannerFile" required />
                     </div>
                 </div>

@@ -82,6 +82,7 @@ namespace blog.core.Service.UserService
                     {
                         _httpContextAccessor.HttpContext.Session.SetInt32("loggedInUserId", u.Id);
                         _httpContextAccessor.HttpContext.Session.SetString("loggedInUserFullName", u.FullName);
+                        _httpContextAccessor.HttpContext.Session.SetString("userFirstName", u.FirstName);
                         _httpContextAccessor.HttpContext.Session.SetInt32("RoleId", u.RoleId);
                         model.Success = true;
                     }

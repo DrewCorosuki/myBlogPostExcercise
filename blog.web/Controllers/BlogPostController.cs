@@ -36,18 +36,31 @@ namespace blog.web.Controllers
         {
             //save file if file is valid image
             string[] validExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
-            var fileExt = Path.GetExtension(model.BannerFile.FileName);
-            if (!Array.Exists(validExtensions, ext => ext == fileExt))
+            if (model.BannerFile != null)
             {
-                ViewBag.ErrorMessage = "Invalid banner file.";
-                return View();
+                var fileExt = Path.GetExtension(model.BannerFile.FileName);
+                if (!Array.Exists(validExtensions, ext => ext == fileExt))
+                {
+                    ViewBag.ErrorMessage = "Invalid banner file.";
+                    return View();
+                }
+                else
+                {
+                    //check file size
+                    long fileSize = model.BannerFile.Length;
+                    double fileSizeInKb = fileSize / 1024.0;
+                    double fileSizeInMb = fileSizeInKb / 1024.0;
+                    if (fileSizeInMb > 5)
+                    {
+                        ViewBag.ErrorMessage = "Banner file size exceeds the max file size allowed.";
+                        return View();
+                    }
+
+                    model.BannerImage = Helpers.FileHelper.SaveFile(model.BannerFile, "wwwroot/content/dist/img/banners/");
+                }
             }
-            else
-            {
-                model.BannerImage = Helpers.FileHelper.SaveFile(model.BannerFile, "wwwroot/content/dist/img/banners/");
-                await _blogPostManagementService.CreateBlogPost(model);
-                return RedirectToAction("","BlogPost");
-            }
+            await _blogPostManagementService.CreateBlogPost(model);
+            return RedirectToAction("","BlogPost");
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -69,6 +82,14 @@ namespace blog.web.Controllers
                 }
                 else
                 {
+                    long fileSize = model.BannerFile.Length;
+                    double fileSizeInKb = fileSize / 1024.0;
+                    double fileSizeInMb = fileSizeInKb / 1024.0;
+                    if (fileSizeInMb > 5)
+                    {
+                        ViewBag.ErrorMessage = "Banner file size exceeds the max file size allowed.";
+                        return View();
+                    }
                     model.BannerImage = Helpers.FileHelper.SaveFile(model.BannerFile, "wwwroot/content/dist/img/banners/");
                 }
             }
